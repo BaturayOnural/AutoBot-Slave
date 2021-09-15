@@ -37,7 +37,7 @@ def get_status():
     return status
 
 @app.route('/email')
-def hello():
+def email():
     global IP, PORT, PROXY, status
     IP = ""
     PORT = ""
