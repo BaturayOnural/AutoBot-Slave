@@ -1,6 +1,4 @@
-from flask import Flask, render_template, send_from_directory, jsonify, redirect
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
+from flask import Flask, send_from_directory, redirect
 from flask import request
 from random import randrange
 import requests
@@ -27,9 +25,9 @@ chrome_options.add_argument('--proxy-server=%s' % PROXY)
 
 # Casual routes for pages
 @app.route('/hello')
-def overview():
+def hello():
     return "Hello World!"
 
 # Run server from terminal
 if __name__ ==  "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0 ")
