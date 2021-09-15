@@ -1,6 +1,7 @@
 from flask import Flask, send_from_directory, redirect
 from flask import request
 from random import randrange
+from flask_cors import CORS
 import requests
 import os
 from selenium import webdriver
