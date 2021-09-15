@@ -33,7 +33,7 @@ def hello():
     return "Hello World!"
 
 @app.route('/get_status')
-def hello():
+def get_status():
     return status
 
 @app.route('/email')
