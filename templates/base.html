@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no"
+    />
+    <link rel="shortcut icon" href="/templates/static/favicon.ico">
+    <title>Auto Bot</title>
+    <style type="text/css">
+        body {
+          -webkit-font-smoothing: antialiased;
+          -moz-font-smoothing: grayscale;
+        }
+
+        #sidebar {
+          position: fixed;
+          height: 100vh;
+          background-color: #f5f5f5;
+          padding-top: 68px;
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        #sidebar .ui.menu > a.item {
+          padding: 10px 20px;
+          line-height: 20px;
+          color: #123123;
+          border-radius: 0 !important;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+
+        #sidebar .ui.menu > a.item.active {
+          background-color: #123123;
+          color: white;
+          border: none !important;
+        }
+
+        #sidebar .ui.menu > a.item:hover {
+          background-color: #eee;
+          color: #23527c;
+        }
+
+        #content {
+          padding-top: 56px;
+          padding-left: 20px;
+          padding-right: 20px;
+          
+        }
+
+        #content h1 {
+          font-size: 36px;
+        }
+
+        #content .ui.dividing.header {
+          width: 100%;
+        }
+
+        .ui.centered.small.circular.image {
+          margin-top: 14px;
+          margin-bottom: 14px;
+        }
+
+        .ui.borderless.menu {
+          box-shadow: none;
+          flex-wrap: wrap;
+          border: none;
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        .ui.mobile.only.grid .ui.menu .ui.vertical.menu {
+          display: none;
+        }
+      </style>
+
+      <!-- You MUST include jQuery before Fomantic -->
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+      {% block head %}{% endblock %}
+  </head>
+  <body id="root">
+      <div class="ui tablet computer only padded grid">
+        <div class="ui inverted borderless top fixed fluid menu">
+          <a href="/overview" class="header item"><i class="inverted big olive robot icon"></i>Auto Bot</a>
+          <div class="right menu">
+            <a style="pointer-events: none; cursor: default;" class="item">
+              <img class="ui right spaced avatar image" src="/templates/static/ms.jpg">
+              M. Soydan
+            </a>
+            <a href="/login" class="item">Sign out</a>
+          </div>
+        </div>
+      </div>
+
+      <!---THIS SECTION IS MOBILE ONLY BEGIN---->
+      <div class="ui mobile only padded grid">
+        <div class="ui top fixed borderless fluid inverted menu">
+          <a href="/overview" class="header item"><i class="inverted big olive robot icon"></i>Auto Bot</a>
+          <div class="right menu">
+            <div class="item">
+              <button class="ui icon toggle basic inverted button">
+                <i class="content icon"></i>
+              </button>
+            </div>
+          </div>
+          <div class="ui vertical borderless inverted fluid menu">
+            <a style="pointer-events: none; cursor: default;" class="item">
+              <img class="ui right spaced avatar image" src="/templates/static/ms.jpg">
+              M. Soydan
+            </a>
+            <a href="/login" class="item">Sign out</a>
+            <div class="ui fitted divider"></div>
+          </div>
+        </div>
+      </div>
+      <!---THIS SECTION IS MOBILE ONLY END---->
+
+
+
+
+      <!--HIDDEN DIV AND CLICK HANDLES FOR JS BEGIN-->
+
+
+
+<!--HIDDEN DIV AND CLICK HANDLES FOR JS END-->
+{% block body %}{% endblock %}
+    </body>
+
+</html>

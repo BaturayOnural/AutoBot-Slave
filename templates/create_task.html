@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+{% block body %}
+<div class="ui padded grid">
+  <div
+    class="two wide tablet only two wide computer only column"
+    id="sidebar"
+  >
+    <div class="ui massive vertical borderless fluid text menu">
+      <a href="/overview" class="item">Overview <em data-emoji=":clipboard:" class="small"></em></a>
+      <a href="/create_task" class="active item">Create Task <em data-emoji=":crayon:" class="small"></em></a>
+      <a href="/task_reports" class="item">Task Reports <em data-emoji=":bar_chart:" class="small"></em></a>
+      <a href="/database" class="item">Database <em data-emoji=":card_box:" class="small"></em></a>
+      <a href="/bot_settings" class="item">Bot Settings <em data-emoji=":tools:" class="small"></em></a>
+    </div>
+  </div>
+  <div
+    class="sixteen wide mobile fourteen wide tablet fourteen wide computer right floated column"
+    id="content"
+  >
+    <div class="ui center aligned padded grid">
+      <div class="row">
+        <h1 class="ui huge dividing header">Create a Task</h1><br> <br>
+      </div>
+      <div class="ui center aligned large form">
+       <div class="huge field">
+        <label>Type of Task</label>
+        <select class="ui search dropdown"><br>
+          <option value="">Select Task</option><br>
+          <option value="AF">Email Registration</option>
+          <option value="AX">Instagram Registration</option>
+          <option value="AL">Task(comment etc.)</option>
+        </select>
+       </div>
+      </div>
+
+
+      <div class="row">
+
+        <div class="ui segment">
+          <div class="ui center aligned very relaxed grid" >
+            <div class="column">
+
+              <p>Account Amount</p>  <br>
+              <div class="ui input">
+                <input type="text" placeholder="Please enter a number"><br>
+              </div><br><br>
+
+              <p>Bot Amount</p>  <br>
+              <div class="ui labeled slider" id="slider-custom-step" tabindex="0" style="width:250px">
+                <div class="inner">
+                  <div class="track"></div>
+                  <div class="track-fill" style="left: 0%; right: 60%;"></div>
+                  <div class="thumb" style="left: calc(40% - 10.5px); right: auto;"></div>
+                </div>
+              </div>
+
+            </div>
+          </div><br>
+
+          <div class="ui center aligned grid">
+
+
+                <div class="ui button">
+                  Focusable
+                </div>
+
+          </div>
+
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $('.ui.slider')
+    .slider({
+      min: 0,
+      max: 8,
+      start: 0,
+      step: 1
+    })
+  ;
+
+
+</script>
+
+{% endblock %}
