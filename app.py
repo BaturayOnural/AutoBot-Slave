@@ -7,27 +7,13 @@ import os
 from selenium import webdriver
 import time
 
-
-# Api keys
 webshare_api_key = "3c43d9fc51d65c8cf7fe3bb85d1ecfcade8b41be"
+status="0"
 
 # Init app
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 CORS(app)
-
-# globals
-IP = ""
-PORT = ""
-PROXY = IP + ":" + PORT
-status = "0"
-
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--proxy-server=%s' % PROXY)
-#chrome = webdriver.Chrome("./chromedriver", chrome_options=chrome_options)
-
-#chrome.get("https://www.google.com/search?channel=fs&client=ubuntu&q=what+is+my+ip+address")
-
 
 # Casual routes for pages
 @app.route('/hello')
@@ -36,21 +22,34 @@ def hello():
 
 @app.route('/get_status')
 def get_status():
+    global status
     return status
 
-@app.route('/email')
-def email():
-    global IP, PORT, PROXY, status
-    IP = ""
-    PORT = ""
+@app.route('/set_status/<int:stat>')
+def set_status(stat):
+    global status
+    str_vers = str(stat)
+    status = str_vers
+    return status
+
+@app.route('/email/<str:proxy>/<str:name>/<str:surname>')
+def email(proxy, name, surname):
+    global status
+    status = "0"
+
+    response = requests.get("https://proxy.webshare.io/api/proxy/list/", headers={"Authorization": webshare_api_key})
+    response = response.json()
+
+    response = response.get("results")[0]
+    IP = str(response.get("proxy_address"))
+    PORT = str(response.get("ports").get("http"))
     PROXY = IP + ":" + PORT
-    status = "1"
-    time.sleep(10)
-    status="2"
-    time.sleep(10)
-    status="3"
-    time.sleep(10)
-    status="0"
+
+    NAME = "Hasan"
+    SURNAME = "KALYONCU"
+
+    os.system("python yandex_registration.py " + PROXY + " " + NAME + " " + SURNAME)
+
     return "Email Generated!"
 
 # Run server from terminal
