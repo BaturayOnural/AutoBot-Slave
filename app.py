@@ -4,11 +4,21 @@ from random import randrange
 from flask_cors import CORS
 import requests
 import os
-from selenium import webdriver
 import time
+import signal
+import subprocess
+import psutil
 
-webshare_api_key = "3c43d9fc51d65c8cf7fe3bb85d1ecfcade8b41be"
+def kill_child_proc(ppid):
+    parent_pid = ppid   # my example
+    parent = psutil.Process(parent_pid)
+    for child in parent.children(recursive=True):  # or parent.children() for recursive=False
+        child.kill()
+    parent.kill()
+
 status="0"
+pid = 0
+task_id = "-1"
 
 # Init app
 app = Flask(__name__)
@@ -32,25 +42,30 @@ def set_status(stat):
     status = str_vers
     return status
 
-@app.route('/email/<str:proxy>/<str:name>/<str:surname>')
-def email(proxy, name, surname):
-    global status
+@app.route('/email/<proxy>/<task>/<name>/<surname>')
+def email(proxy, task, name, surname):
+    global status, pid, task_id
+    status = "0"
+    task_id = task
+
+    PROXY = proxy
+    NAME = name
+    SURNAME = surname
+
+    command = ["python", "yandex_registration.py", PROXY, NAME, SURNAME, task_id]
+    pid = subprocess.Popen(command, stdout=subprocess.PIPE)
+
     status = "0"
 
-    response = requests.get("https://proxy.webshare.io/api/proxy/list/", headers={"Authorization": webshare_api_key})
-    response = response.json()
-
-    response = response.get("results")[0]
-    IP = str(response.get("proxy_address"))
-    PORT = str(response.get("ports").get("http"))
-    PROXY = IP + ":" + PORT
-
-    NAME = "Hasan"
-    SURNAME = "KALYONCU"
-
-    os.system("python yandex_registration.py " + PROXY + " " + NAME + " " + SURNAME)
-
     return "Email Generated!"
+
+@app.route('/kill_email')
+def kill_email():
+    global status, pid
+    kill_child_proc(pid.pid)
+    os.kill(int(pid.pid), signal.SIGKILL)
+    status = "0"
+    return "Email operation killed!"
 
 # Run server from terminal
 if __name__ ==  "__main__":

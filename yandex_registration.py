@@ -14,10 +14,13 @@ import random
 print(sys.argv[1]) # proxy
 print(sys.argv[2]) # name
 print(sys.argv[3]) # surname
+print(sys.argv[4]) # task_id
 
 PROXY = str(sys.argv[1])
 name = str(sys.argv[2])
 surname = str(sys.argv[3])
+task_id = str(sys.argv[4])
+MASTER_URL = ""
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--proxy-server=%s' % PROXY)
@@ -129,6 +132,8 @@ if (isNeeded == 1):
     element = chrome.find_element_by_xpath("/html/body/div/div/div[1]/div[2]/main/div/div/div/div[3]/span/a")
     chrome.execute_script("arguments[0].click();", element)
     url = 'http://0.0.0.0:5000/set_status/3' # status update
+    resp = requests.get(url)
+    url =  MASTER_URL + '/add_email/' + username + "/" + password + "/" + task_id # send credentials to master
     resp = requests.get(url)
 else:
     url = 'http://0.0.0.0:5000/set_status/-1' # status update
