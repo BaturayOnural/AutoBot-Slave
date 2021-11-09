@@ -23,7 +23,7 @@ task_id = str(sys.argv[4])
 MASTER_URL = ""
 
 chrome_options = webdriver.ChromeOptions()
-#chrome_options.add_argument('--proxy-server=%s' % PROXY)
+chrome_options.add_argument('--proxy-server=%s' % PROXY)
 chrome_options.headless = True
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--no-sandbox");
@@ -31,7 +31,7 @@ chrome_options.add_argument("--disable-dev-shm-usage");
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument('--ignore-certificate-errors')
 chrome_options.add_argument('--allow-running-insecure-content')
-chrome = webdriver.Chrome("./chromedriver", chrome_options=chrome_options)
+chrome = webdriver.Chrome("/user/bin/chromedriver", chrome_options=chrome_options)
 
 # random
 random_number = random.randint(100,999)
