@@ -53,7 +53,8 @@ def email(proxy, task, name, surname):
     SURNAME = surname
 
     command = ["python", "yandex_registration.py", PROXY, NAME, SURNAME, task_id]
-    pid = subprocess.Popen(command, stdout=subprocess.PIPE)
+    process = subprocess.Popen(command, stdout=subprocess.PIPE)
+    pid = process.pid
 
     status = "0"
 
@@ -62,8 +63,8 @@ def email(proxy, task, name, surname):
 @app.route('/kill_email')
 def kill_email():
     global status, pid
-    kill_child_proc(pid.pid)
-    os.kill(int(pid.pid), signal.SIGKILL)
+    kill_child_proc(pid)
+    os.kill(pid, signal.SIGKILL)
     status = "0"
     return "Email operation killed!"
 
