@@ -39,7 +39,7 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument('--ignore-certificate-errors')
 chrome_options.add_argument('--allow-running-insecure-content')
-chrome = webdriver.Chrome("/usr/bin/chromedriver", chrome_options=chrome_options)
+chrome = webdriver.Chrome("/usr/bin/chromedriver", options=chrome_options)
 
 # random
 random_number = random.randint(100,999)
@@ -47,7 +47,7 @@ random_number = random.randint(100,999)
 # name
 chrome.get('https://passport.yandex.com.tr/registration/mail?from=mail&require_hint=1&origin=hostroot_homer_reg_tr&retpath=https%3A%2F%2Fmail.yandex.com.tr%2F&backpath=https%3A%2F%2Fmail.yandex.com.tr%3Fnoretpath%3D1')
 
-chrome.get_screenshot_as_file("./screenshot.png")
+print(chrome.title)
 quit()
 
 # click "i don't have a phone number"
