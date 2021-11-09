@@ -132,7 +132,6 @@ finally:
 if (isNeeded == 1):
     element = chrome.find_element_by_xpath("/html/body/div/div/div[2]/div/main/div/div/div/form/div[4]/div/div[2]/div/button")
     chrome.execute_script("arguments[0].click();", element)
-quit()
 
 if (isNeeded == 1):
     element = chrome.find_element_by_xpath("/html/body/div/div/div[1]/div[2]/main/div/div/div/div[3]/span/a")
