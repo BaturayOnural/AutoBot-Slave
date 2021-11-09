@@ -25,6 +25,8 @@ MASTER_URL = ""
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--proxy-server=%s' % PROXY)
 chrome_options.add_argument("--start-maximized")
+chrome_options.add_argument("--no-sandbox");
+chrome_options.add_argument("--disable-dev-shm-usage");
 chrome = webdriver.Chrome("./chromedriver", chrome_options=chrome_options)
 
 # random
