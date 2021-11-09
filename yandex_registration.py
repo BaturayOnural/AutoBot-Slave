@@ -47,7 +47,7 @@ random_number = random.randint(100,999)
 # name
 chrome.get('https://passport.yandex.com.tr/registration/mail?from=mail&require_hint=1&origin=hostroot_homer_reg_tr&retpath=https%3A%2F%2Fmail.yandex.com.tr%2F&backpath=https%3A%2F%2Fmail.yandex.com.tr%3Fnoretpath%3D1')
 
-chrome.get_screenshot_as_file("screenshot.png")
+chrome.get_screenshot_as_file("./screenshot.png")
 quit()
 
 # click "i don't have a phone number"

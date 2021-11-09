@@ -2,7 +2,7 @@
 rm chromedriver
 apt install -y python3-virtualenv
 virtualenv env
-source env/bin/activate
+source ./env/bin/activate
 pip install -r requirements.txt
 apt update -y
 apt upgrade -y
