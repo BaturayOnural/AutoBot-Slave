@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-git clone https://github.com/BaturayOnural/AutoBot-Slave.git
-cd Autobot-Slave
 rm chromedriver
 apt install python3-virtualenv
 virtualenv env
