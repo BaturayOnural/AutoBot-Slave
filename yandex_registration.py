@@ -35,6 +35,7 @@ random_number = random.randint(100,999)
 
 # name
 chrome.get('https://passport.yandex.com.tr/registration/mail?from=mail&require_hint=1&origin=hostroot_homer_reg_tr&retpath=https%3A%2F%2Fmail.yandex.com.tr%2F&backpath=https%3A%2F%2Fmail.yandex.com.tr%3Fnoretpath%3D1')
+time.sleep(5)
 input = chrome.find_element_by_xpath("/html/body/div[1]/div/div[2]/div/main/div/div/div/form/div[1]/div[1]/span/input")
 input.clear()
 input.send_keys(name)
