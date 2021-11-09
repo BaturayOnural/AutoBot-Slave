@@ -46,8 +46,15 @@ random_number = random.randint(100,999)
 
 # name
 chrome.get('https://passport.yandex.com.tr/registration/mail?from=mail&require_hint=1&origin=hostroot_homer_reg_tr&retpath=https%3A%2F%2Fmail.yandex.com.tr%2F&backpath=https%3A%2F%2Fmail.yandex.com.tr%3Fnoretpath%3D1')
-print("AAAAAAAAAAA")
-print(chrome.title)
+
+pageSource = chrome.page_source
+fileToWrite = open("page_source.html", "w")
+fileToWrite.write(pageSource)
+fileToWrite.close()
+fileToRead = open("page_source.html", "r")
+print(fileToRead.read())
+fileToRead.close()
+
 quit()
 
 # click "i don't have a phone number"
