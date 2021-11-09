@@ -31,7 +31,7 @@ chrome_options.add_argument("--disable-dev-shm-usage");
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument('--ignore-certificate-errors')
 chrome_options.add_argument('--allow-running-insecure-content')
-chrome = webdriver.Chrome("/user/bin/chromedriver", chrome_options=chrome_options)
+chrome = webdriver.Chrome("/usr/bin/chromedriver", chrome_options=chrome_options)
 
 # random
 random_number = random.randint(100,999)
