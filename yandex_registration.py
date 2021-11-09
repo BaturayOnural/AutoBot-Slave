@@ -23,19 +23,26 @@ task_id = str(sys.argv[4])
 MASTER_URL = ""
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--proxy-server=%s' % PROXY)
+#chrome_options.add_argument('--proxy-server=%s' % PROXY)
 chrome_options.headless = True
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--no-sandbox");
 chrome_options.add_argument("--disable-dev-shm-usage");
-chrome = webdriver.Chrome("/usr/bin/chromedriver", chrome_options=chrome_options)
+chrome_options.add_argument("--window-size=1920,1080")
+chrome_options.add_argument('--ignore-certificate-errors')
+chrome_options.add_argument('--allow-running-insecure-content')
+chrome = webdriver.Chrome("./chromedriver", chrome_options=chrome_options)
 
 # random
 random_number = random.randint(100,999)
 
 # name
 chrome.get('https://passport.yandex.com.tr/registration/mail?from=mail&require_hint=1&origin=hostroot_homer_reg_tr&retpath=https%3A%2F%2Fmail.yandex.com.tr%2F&backpath=https%3A%2F%2Fmail.yandex.com.tr%3Fnoretpath%3D1')
-time.sleep(5)
+
+# click "i don't have a phone number"
+next_bttn = chrome.find_element_by_xpath("/html/body/div[1]/div/div[2]/div/main/div/div/div/form/div[3]/div/div[2]/div/div[1]/span")
+next_bttn.click()
+
 input = chrome.find_element_by_xpath("/html/body/div[1]/div/div[2]/div/main/div/div/div/form/div[1]/div[1]/span/input")
 input.clear()
 input.send_keys(name)
@@ -59,10 +66,9 @@ input.send_keys(password)
 input = chrome.find_element_by_xpath("/html/body/div[1]/div/div[2]/div/main/div/div/div/form/div[2]/div[2]/span/input")
 input.send_keys(password)
 
-next_bttn = chrome.find_element_by_xpath("/html/body/div[1]/div/div[2]/div/main/div/div/div/form/div[3]/div/div[2]/div/div[1]/span")
-next_bttn.click()
 
-# click "i don't have a phone number"
+
+# most favourite musician"
 try:
     element = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div/div/div[2]/div/main/div/div/div/form/div[3]/div/div[1]/div[2]/span/input")))
 finally:
@@ -94,12 +100,7 @@ if captcha_text != 0:
 else:
     print("task finished with error "+solver.error_code)
 
-
-try:
-    element = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div[1]/table/tbody/tr/td[2]/table/tbody/tr/td[2]/button")))
-finally:
-    chrome.find_element_by_xpath("/html/body/div[2]/div/div[1]/table/tbody/tr/td[2]/table/tbody/tr/td[2]/button").click()
-
+#chrome.get_screenshot_as_file("screenshot.png")
 
 input = chrome.find_element_by_xpath("/html/body/div/div/div[2]/div/main/div/div/div/form/div[3]/div/div[2]/div[1]/span/input")
 input.clear()
@@ -137,7 +138,7 @@ if (isNeeded == 1):
     chrome.execute_script("arguments[0].click();", element)
     url = 'http://0.0.0.0:5000/set_status/3' # status update
     resp = requests.get(url)
-    url =  MASTER_URL + '/add_email/' + username + "/" + password + "/" + task_id # send credentials to master
+    url =  MASTER_URL + '/add_email/' + username + "/" + password + "/" + str(task_id) # send credentials to master
     resp = requests.get(url)
 else:
     url = 'http://0.0.0.0:5000/set_status/-1' # status update
