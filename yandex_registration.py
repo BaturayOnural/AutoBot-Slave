@@ -23,7 +23,7 @@ surname = str(sys.argv[3])
 task_id = str(sys.argv[4])
 MASTER_URL = "http://143.198.30.128:5000"
 
-display = Display(visible=1, size=(1920, 1080))
+display = Display(visible=0, size=(1920, 1080))
 display.start()
 
 chrome_options = webdriver.ChromeOptions()
