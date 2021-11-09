@@ -24,10 +24,11 @@ MASTER_URL = ""
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--proxy-server=%s' % PROXY)
-chrome_options.add_argument("--start-maximized")
+chrome_options.headless = True
+chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--no-sandbox");
 chrome_options.add_argument("--disable-dev-shm-usage");
-chrome = webdriver.Chrome("./chromedriver", chrome_options=chrome_options)
+chrome = webdriver.Chrome("/usr/bin/chromedriver", chrome_options=chrome_options)
 
 # random
 random_number = random.randint(100,999)
