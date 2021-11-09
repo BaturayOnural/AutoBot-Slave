@@ -2,6 +2,7 @@ anticaptchaofficial==1.0.31
 certifi==2021.5.30
 charset-normalizer==2.0.4
 click==8.0.1
+EasyProcess==0.3
 Flask==2.0.1
 Flask-Cors==3.0.10
 idna==3.2
@@ -11,6 +12,7 @@ Jinja2==3.0.1
 MarkupSafe==2.0.1
 psutil==5.8.0
 py==1.10.0
+PyVirtualDisplay==2.2
 requests==2.26.0
 selenium==3.141.0
 six==1.16.0

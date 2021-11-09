@@ -10,6 +10,7 @@ import time
 import sys
 import requests
 import random
+from pyvirtualdisplay import Display
 
 print(sys.argv[1]) # proxy
 print(sys.argv[2]) # name
@@ -22,12 +23,19 @@ surname = str(sys.argv[3])
 task_id = str(sys.argv[4])
 MASTER_URL = ""
 
+display = Display(visible=0, size=(1920, 1080))
+display.start()
+
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--proxy-server=%s' % PROXY)
-chrome_options.headless = True
-chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--no-sandbox");
+chrome_options.add_argument("start-maximized"); // https://stackoverflow.com/a/26283818/1689770
+chrome_options.add_argument("enable-automation"); // https://stackoverflow.com/a/43840128/1689770
+chrome_options.add_argument("--headless"); // only if you are ACTUALLY running headless
+chrome_options.add_argument("--disable-infobars");
 chrome_options.add_argument("--disable-dev-shm-usage");
+chrome_options.add_argument("--disable-gpu");
+chrome_options.add_argument("--disable-browser-side-navigation");
+chrome_options.add_argument("--no-sandbox");
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument('--ignore-certificate-errors')
 chrome_options.add_argument('--allow-running-insecure-content')
