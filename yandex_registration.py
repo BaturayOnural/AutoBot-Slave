@@ -23,14 +23,14 @@ surname = str(sys.argv[3])
 task_id = str(sys.argv[4])
 MASTER_URL = "http://143.198.30.128:5000"
 
-display = Display(visible=0, size=(1920, 1080))
+display = Display(visible=1, size=(1920, 1080))
 display.start()
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--proxy-server=%s' % PROXY)
+#chrome_options.add_argument('--proxy-server=%s' % PROXY)
 chrome_options.add_argument("--start-maximized")
 chrome_options.add_argument("--enable-automation")
-chrome_options.add_argument("--headless")
+#chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-infobars")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--disable-gpu")
@@ -39,7 +39,7 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument('--ignore-certificate-errors')
 chrome_options.add_argument('--allow-running-insecure-content')
-chrome = webdriver.Chrome("/usr/bin/chromedriver", options=chrome_options)
+chrome = webdriver.Chrome("./chromedriver", options=chrome_options)
 
 # random
 random_number = random.randint(100,999)
@@ -132,14 +132,7 @@ finally:
 if (isNeeded == 1):
     element = chrome.find_element_by_xpath("/html/body/div/div/div[2]/div/main/div/div/div/form/div[4]/div/div[2]/div/button")
     chrome.execute_script("arguments[0].click();", element)
-
-# final next button
-isNeeded = 0
-try:
-    element = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div/div/div[1]/div[2]/main/div/div/div/div[3]/span/a")))
-finally:
-    if(chrome.find_element_by_xpath("/html/body/div/div/div[1]/div[2]/main/div/div/div/div[3]/span/a")):
-        isNeeded = 1
+quit()
 
 if (isNeeded == 1):
     element = chrome.find_element_by_xpath("/html/body/div/div/div[1]/div[2]/main/div/div/div/div[3]/span/a")
@@ -149,7 +142,7 @@ if (isNeeded == 1):
     url =  MASTER_URL + '/add_email/' + username + "/" + password + "/" + str(task_id) # send credentials to master
     resp = requests.get(url)
 else:
-    url = 'http://0.0.0.0:5000/set_status/-1' # status update
+    url = 'http://0.0.0.0:5000/set_status/0' # status update
     resp = requests.get(url)
 
 chrome.quit()
