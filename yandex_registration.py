@@ -133,15 +133,16 @@ if (isNeeded == 1):
     element = chrome.find_element_by_xpath("/html/body/div/div/div[2]/div/main/div/div/div/form/div[4]/div/div[2]/div/button")
     chrome.execute_script("arguments[0].click();", element)
 
-if (isNeeded == 1):
-    element = chrome.find_element_by_xpath("/html/body/div/div/div[1]/div[2]/main/div/div/div/div[3]/span/a")
+try:
+    element = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div/div/div[1]/div[2]/main/div/div/div/div[3]/span/a")))
+    element = find_element_by_xpath("/html/body/div/div/div[1]/div[2]/main/div/div/div/div[3]/span/a")
     chrome.execute_script("arguments[0].click();", element)
-    url = 'http://0.0.0.0:5000/set_status/3' # status update
-    resp = requests.get(url)
-    url =  MASTER_URL + '/add_email/' + username + "/" + password + "/" + str(task_id) # send credentials to master
-    resp = requests.get(url)
-else:
-    url = 'http://0.0.0.0:5000/set_status/0' # status update
-    resp = requests.get(url)
+except:
+    pass
+time.sleep(3)
+url = 'http://0.0.0.0:5000/set_status/3' # status update
+resp = requests.get(url)
+url =  MASTER_URL + '/add_email/' + username + "/" + password + "/" + str(task_id) # send credentials to master
+resp = requests.get(url)
 
 chrome.quit()
