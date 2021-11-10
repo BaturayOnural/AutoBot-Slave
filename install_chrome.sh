@@ -8,6 +8,7 @@ apt update -y
 apt upgrade -y
 apt install -y libxss1 libappindicator1 libindicator7
 apt install -y unzip
+apt install -y xvfb
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i google-chrome-stable_current_amd64.deb
 apt-get install -f -y
