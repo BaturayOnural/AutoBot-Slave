@@ -146,3 +146,4 @@ url =  MASTER_URL + '/add_email/' + username + "/" + password + "/" + str(task_i
 resp = requests.get(url)
 
 chrome.quit()
+display.popen.kill()
