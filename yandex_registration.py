@@ -58,9 +58,6 @@ input = chrome.find_element_by_xpath("/html/body/div[1]/div/div[2]/div/main/div/
 input.clear()
 input.send_keys(name)
 
-url = 'http://0.0.0.0:5000/set_status/1' # status update
-resp = requests.get(url)
-
 # surname
 input = chrome.find_element_by_xpath("/html/body/div[1]/div/div[2]/div/main/div/div/div/form/div[1]/div[2]/span[1]/input")
 input.clear()
@@ -77,7 +74,8 @@ input.send_keys(password)
 input = chrome.find_element_by_xpath("/html/body/div[1]/div/div[2]/div/main/div/div/div/form/div[2]/div[2]/span/input")
 input.send_keys(password)
 
-
+url = 'http://0.0.0.0:5000/set_status/1' # status update
+resp = requests.get(url)
 
 # most favourite musician"
 try:
@@ -101,9 +99,6 @@ finally:
     src = element.get_attribute('src')
     urllib.request.urlretrieve(src, "captcha.jpeg")
 
-url = 'http://0.0.0.0:5000/set_status/2' # status update
-resp = requests.get(url)
-
 # solve capcha
 captcha_text = solver.solve_and_return_solution("captcha.jpeg")
 if captcha_text != 0:
@@ -111,7 +106,8 @@ if captcha_text != 0:
 else:
     print("task finished with error "+solver.error_code)
 
-
+url = 'http://0.0.0.0:5000/set_status/2' # status update
+resp = requests.get(url)
 
 input = chrome.find_element_by_xpath("/html/body/div/div/div[2]/div/main/div/div/div/form/div[3]/div/div[2]/div[1]/span/input")
 input.clear()
