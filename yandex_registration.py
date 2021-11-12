@@ -12,8 +12,9 @@ import requests
 import random
 from pyvirtualdisplay import Display
 
-# close remaining open fake displays
+# close remaining open fake displays and chromes
 os.system('pkill Xvfb')
+os.system('pkill chrome')
 
 print(sys.argv[1]) # proxy
 print(sys.argv[2]) # name
