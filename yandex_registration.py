@@ -12,6 +12,9 @@ import requests
 import random
 from pyvirtualdisplay import Display
 
+# close remaining open fake displays
+os.system('pkill Xvfb')
+
 print(sys.argv[1]) # proxy
 print(sys.argv[2]) # name
 print(sys.argv[3]) # surname
@@ -146,4 +149,3 @@ url =  MASTER_URL + '/add_email/' + username + "/" + password + "/" + str(task_i
 resp = requests.get(url)
 
 chrome.quit()
-display.popen.kill()

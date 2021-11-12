@@ -68,6 +68,11 @@ def kill_email():
     status = "0"
     return "Email operation killed!"
 
+@app.route('/git_pull')
+def git_pull():
+    os.("git pull")
+    return "Pulled from github!"
+
 # Run server from terminal
 if __name__ ==  "__main__":
     app.run(host="0.0.0.0")
