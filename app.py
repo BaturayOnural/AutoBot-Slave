@@ -71,7 +71,7 @@ def kill_email():
 @app.route('/git_pull')
 def git_pull():
     os.system("git pull")
-    return "Pulled from github!"
+    return "Pulled from Github!"
 
 # Run server from terminal
 if __name__ ==  "__main__":
